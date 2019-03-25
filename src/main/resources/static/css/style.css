@@ -12,6 +12,7 @@ hr {
 	height: 1px;
 	color: #333;
 	background-color: #333;
+	margin-bottom: 30px;
 }
 
 .home-headline {
@@ -22,11 +23,25 @@ hr {
 .home-headline span {
 	color: white;
 	padding: 5px 22px;
+	font-size: 30px;
 }
 
+.section-headline {
+	margin: auto;
+	background-color: black;
+	font-size: 24px;
+	text-align: center;
+	margin-top: 90px;
+}
 
+.section-headline span {
+	color: white;
+	padding: 5px 22px;
+}
 
-
+.btn-create-account {
+	margin-top: 15px;
+}
 
 
 
