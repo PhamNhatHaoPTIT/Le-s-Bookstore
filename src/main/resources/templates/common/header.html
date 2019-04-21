@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://w3.org/1999/xhtml" xmlns:sec="http://w3.org/1999/xhtml">
 
 <head th:fragment="common-header">
 <meta charset="UTF-8" />
@@ -39,8 +39,9 @@
 						</form>
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="#">Shopping Cart</a></li>
-							<li><a href="/myAccount">My Account</a></li>
-							<li><a href="#">Log Out</a></li>
+							<li><a sec:authorize="isAnonymous()" href="/login">My Account</a></li>
+							<li><a sec:authorize="isAuthenticated()" href="/myProfile">My Profile</a></li>
+							<li><a sec:authorize="isAuthenticated()" href="/logout">Log Out</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -57,3 +58,6 @@
 
 </body>
 </html>
+
+
+
