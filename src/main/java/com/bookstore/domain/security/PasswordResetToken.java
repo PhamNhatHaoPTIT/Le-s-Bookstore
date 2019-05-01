@@ -15,27 +15,32 @@ import com.bookstore.domain.User;
 
 @Entity
 public class PasswordResetToken {
+
 	private static final int EXPIRATION = 60 * 24;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 	
 	private String token;
 	
 	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(nullable=false, name="user_id")
 	private User user;
 	
 	private Date expiryDate;
 	
+	public PasswordResetToken(){}
+	
 	public PasswordResetToken(final String token, final User user) {
-		super();
+		super ();
+		
 		this.token = token;
 		this.user = user;
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
 	}
-
-	private Date calculateExpiryDate(final int expiryTimeInMinutes) {
+	
+	private Date calculateExpiryDate (final int expiryTimeInMinutes) {
 		final Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(new Date().getTime());
 		cal.add(Calendar.MINUTE, expiryTimeInMinutes);
@@ -47,11 +52,11 @@ public class PasswordResetToken {
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -82,16 +87,12 @@ public class PasswordResetToken {
 	public static int getExpiration() {
 		return EXPIRATION;
 	}
+
+	@Override
+	public String toString() {
+		return "PasswordResetToken [id=" + id + ", token=" + token + ", user=" + user + ", expiryDate=" + expiryDate
+				+ "]";
+	}
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
